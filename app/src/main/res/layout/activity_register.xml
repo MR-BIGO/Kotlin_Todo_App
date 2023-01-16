@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="8dp"
+    tools:context=".RegisterActivity">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:text="Create New Account"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
+
+    <EditText
+        android:id="@+id/registerMailET"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
+        android:hint="E-mail"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:inputType="textEmailAddress"/>
+
+    <EditText
+        android:id="@+id/registerPasswordET"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
+        android:hint="Password"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:inputType="textPassword"/>
+
+    <EditText
+        android:id="@+id/registerRepeatPasswordET"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
+        android:hint="Repeat password"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:inputType="textPassword"/>
+
+    <CheckBox
+        android:id="@+id/registerCheckBox"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:buttonTint="#616161"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:text="I agree to the Terms, Privacy Policy and Cookies Policy."
+        android:textColor="@color/black"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/registerSignupBTN"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="Sign up"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_marginTop="150dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="gavagrdzeleb dizainze mushaobas" />
+
+
+</LinearLayout>
