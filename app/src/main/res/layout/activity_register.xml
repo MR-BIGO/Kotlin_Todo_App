@@ -79,6 +79,7 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
+        android:background="@drawable/custom_rounded_button_drawable"
         android:text="Sign up"
         android:textSize="20sp"
         android:textColor="@color/black"

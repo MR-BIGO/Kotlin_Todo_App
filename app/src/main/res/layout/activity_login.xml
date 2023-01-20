@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:layout_margin="8dp"
+    android:orientation="vertical"
     tools:context=".LoginActivity">
 
 
@@ -15,10 +15,10 @@
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
         android:text="APP NAME?"
-        android:textSize="22sp"
+        android:textAlignment="center"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textAlignment="center"/>
+        android:textSize="22sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/loginMailET"
@@ -26,12 +26,12 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="150dp"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress"
         android:paddingStart="6dp"
         android:paddingEnd="6dp"
-        android:hint="E-mail"
         android:textColor="@color/black"
-        android:textSize="18sp"
-        android:inputType="textEmailAddress"/>
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/loginPasswordET"
@@ -39,12 +39,12 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
+        android:hint="Password"
+        android:inputType="textPassword"
         android:paddingStart="6dp"
         android:paddingEnd="6dp"
-        android:hint="Password"
         android:textColor="@color/black"
-        android:textSize="18sp"
-        android:inputType="textPassword"/>
+        android:textSize="18sp" />
 
 
     <androidx.appcompat.widget.AppCompatButton
@@ -53,10 +53,11 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
+        android:background="@drawable/custom_rounded_button_drawable"
         android:text="Sign in"
-        android:textSize="20sp"
         android:textColor="@color/black"
-        android:textStyle="bold"/>
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/loginRegisterBTN"
@@ -64,17 +65,18 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="6dp"
+        android:background="@drawable/custom_rounded_button_drawable"
         android:text="REGISTER"
-        android:textSize="20sp"
         android:textColor="@color/black"
-        android:textStyle="bold"/>
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 
     <TextView
-        android:layout_marginTop="150dp"
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="150dp"
         android:text="gavagrdzeleb dizainze mushaobas" />
 
 </LinearLayout>

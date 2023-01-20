@@ -45,7 +45,8 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="0"
             android:background="@drawable/custom_check_button"
-            android:src="@drawable/ic_baseline_check" />
+            android:src="@drawable/ic_baseline_check"
+            android:contentDescription="todo state" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

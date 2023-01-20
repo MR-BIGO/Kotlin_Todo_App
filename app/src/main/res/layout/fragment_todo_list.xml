@@ -42,9 +42,7 @@
             android:id="@+id/listFragmentRV"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             android:layout_marginTop="30dp"
-
             android:background="@drawable/custom_recycler_view"
             tools:listitem="@layout/todo_task_layout" />
     </LinearLayout>
