@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:layout_marginStart="10dp"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="20dp"
     android:layout_marginEnd="10dp"
-    android:background="@drawable/custom_card"
-    android:elevation="4dp">
+    android:layout_marginBottom="10dp"
+    app:cardBackgroundColor="#E0F2F1"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,14 +44,14 @@
 
         </LinearLayout>
 
-<!--        <TextView-->
-<!--            android:id="@+id/taskDeadlineTV"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="30dp"-->
-<!--            android:layout_gravity="center_vertical"-->
-<!--            android:text="deadline"-->
-<!--            android:textSize="18sp"-->
-<!--            android:layout_marginEnd="10dp" />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/taskDeadlineTV"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="30dp"-->
+        <!--            android:layout_gravity="center_vertical"-->
+        <!--            android:text="deadline"-->
+        <!--            android:textSize="18sp"-->
+        <!--            android:layout_marginEnd="10dp" />-->
 
         <ImageButton
             android:id="@+id/taskIsDoneBTN"
@@ -57,8 +60,8 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="0"
             android:background="@drawable/custom_check_button"
-            android:src="@drawable/ic_baseline_check"
-            android:contentDescription="todo state" />
+            android:contentDescription="todo state"
+            android:src="@drawable/ic_baseline_check" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

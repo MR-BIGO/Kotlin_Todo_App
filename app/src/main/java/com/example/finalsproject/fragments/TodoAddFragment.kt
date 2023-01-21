@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.finalsproject.R
 import com.example.finalsproject.models.Todo
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.sql.Time
@@ -18,33 +19,25 @@ import java.sql.Time
 class TodoAddFragment : Fragment() {
 
     private lateinit var database: DatabaseReference
+    private lateinit var todoTitleET: EditText
+    private lateinit var todoDescriptionET: EditText
+    private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val addButton: Button = view.findViewById(R.id.addFragmentAddBTN)
+        firebaseAuth = FirebaseAuth.getInstance()
+        val uid = firebaseAuth.currentUser?.uid
+        database =
+            FirebaseDatabase.getInstance("https://finals-project-96657-default-rtdb.europe-west1.firebasedatabase.app")
+                .getReference("Todos/$uid")
+        todoTitleET = view.findViewById(R.id.addFragmentTitleET)
+        todoDescriptionET = view.findViewById(R.id.addFragmentDescriptionET)
 
         addButton.setOnClickListener {
-            val title: String = view.findViewById<View?>(R.id.addFragmentTitleET).toString()
-            val description: String =
-                view.findViewById<View?>(R.id.addFragmentDescriptionET).toString()
-
-
-            database = FirebaseDatabase.getInstance().getReference("todo")
-
-            val todo = Todo(title, description, false)
-
-            database.child("title").setValue(todo).addOnSuccessListener {
-                clear()
-
-                Toast.makeText(view.context, "Successfully saved new task", Toast.LENGTH_SHORT)
-                    .show()
-            }.addOnFailureListener {
-                Toast.makeText(view.context, it.message.toString(), Toast.LENGTH_SHORT).show()
-            }
-
+            insertTodo()
         }
-
     }
 
     override fun onCreateView(
@@ -56,7 +49,30 @@ class TodoAddFragment : Fragment() {
     }
 
     private fun clear() {
-        view?.findViewById<EditText>(R.id.addFragmentTitleET)?.text?.clear()
-        view?.findViewById<EditText>(R.id.addFragmentDescriptionET)?.text?.clear()
+        todoTitleET.text.clear()
+        todoDescriptionET.text.clear()
+    }
+
+    private fun insertTodo() {
+
+        val todoTitle: String = todoTitleET.text.toString()
+        val todoDescription: String = todoDescriptionET.text.toString()
+        if (todoTitle.isEmpty()) {
+            todoTitleET.error = "Please, Enter The Title"
+        }
+        if (todoDescription.isEmpty()) {
+            todoDescriptionET.error = "Please, Enter The Description"
+        }
+        val todoId = database.push().key!!
+
+        val todo = Todo(todoId, todoTitle, todoDescription, false)
+
+        database.child(todoId).setValue(todo).addOnSuccessListener {
+
+            Toast.makeText(view?.context, "Task added successfully", Toast.LENGTH_SHORT).show()
+            clear()
+        }.addOnFailureListener {
+            Toast.makeText(view?.context, it.message, Toast.LENGTH_SHORT).show()
+        }
     }
 }

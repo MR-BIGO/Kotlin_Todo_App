@@ -18,32 +18,32 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        noAuthEnter()
+        //noAuthEnter()
 
-//        firebaseAuth = FirebaseAuth.getInstance()
-//
-//        binding.registerSignupBTN.setOnClickListener {
-//            if (checkFields()) {
-//                firebaseAuth.createUserWithEmailAndPassword(
-//                    binding.registerMailET.text.toString(),
-//                    binding.registerPasswordET.text.toString()
-//                ).addOnCompleteListener {
-//                    if (it.isSuccessful) {
-//                        val intent = Intent(this, LoginActivity::class.java)
-//                        startActivity(intent)
-//                    } else {
-//                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//
-//            } else {
-//                Toast.makeText(
-//                    this,
-//                    "Make Sure All The Fields Are Filled Out Correctly",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//            }
-//        }
+        firebaseAuth = FirebaseAuth.getInstance()
+
+        binding.registerSignupBTN.setOnClickListener {
+            if (checkFields()) {
+                firebaseAuth.createUserWithEmailAndPassword(
+                    binding.registerMailET.text.toString(),
+                    binding.registerPasswordET.text.toString()
+                ).addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        val intent = Intent(this, LoginActivity::class.java)
+                        startActivity(intent)
+                    } else {
+                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+            } else {
+                Toast.makeText(
+                    this,
+                    "Make Sure All The Fields Are Filled Out Correctly",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
 
         binding.registerHaveAccountTV.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
