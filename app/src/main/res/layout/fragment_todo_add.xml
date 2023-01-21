@@ -23,12 +23,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="* TITLE"
+            android:layout_marginTop="40dp"
             android:paddingStart="22dp"
             android:paddingEnd="22dp"
+            android:text="* TITLE"
             android:textColor="@color/black"
-            android:textSize="16sp"
-            android:layout_marginTop="40dp" />
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/addFragmentTitleET"
@@ -43,12 +43,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Description (optional)"
+            android:layout_marginTop="20dp"
             android:paddingStart="22dp"
             android:paddingEnd="22dp"
+            android:text="Description (optional)"
             android:textColor="@color/black"
-            android:textSize="16sp"
-            android:layout_marginTop="20dp" />
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/addFragmentDescriptionET"
@@ -63,13 +63,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:text="Deadline"
             android:textColor="@color/black"
-            android:layout_gravity="center"
-            android:textSize="16sp"
-            android:layout_marginTop="20dp" />
+            android:textSize="16sp" />
 
         <TimePicker
+            android:id="@+id/addFragmentTimePicker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
