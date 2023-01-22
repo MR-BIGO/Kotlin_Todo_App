@@ -13,7 +13,7 @@ class TodoAdapter(private val todoList: ArrayList<Todo>) : RecyclerView.Adapter<
 
         var titleView: TextView = itemView.findViewById(R.id.taskTitleTV)
         var descriptionView: TextView = itemView.findViewById(R.id.taskDescriptionTV)
-
+//        var deadlineView: TextView = itemView.findViewById(R.id.taskDeadlineTV)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
@@ -25,7 +25,7 @@ class TodoAdapter(private val todoList: ArrayList<Todo>) : RecyclerView.Adapter<
         val currentTodo = todoList[position]
         holder.titleView.text = currentTodo.title
         holder.descriptionView.text = currentTodo.description
-
+//        holder.deadlineView.text = currentTodo.deadline.toString()
     }
 
     override fun getItemCount(): Int {

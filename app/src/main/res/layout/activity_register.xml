@@ -5,33 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="8dp"
     tools:context=".RegisterActivity">
 
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/shape" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"
         android:text="Create New Account"
-        android:textSize="22sp"
+        android:textAlignment="center"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textAlignment="center"/>
+        android:textSize="22sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/registerMailET"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress"
         android:paddingStart="6dp"
         android:paddingEnd="6dp"
-        android:hint="E-mail"
         android:textColor="@color/black"
-        android:textSize="18sp"
-        android:inputType="textEmailAddress"/>
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/registerPasswordET"
@@ -39,12 +42,12 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
+        android:hint="Password"
+        android:inputType="textPassword"
         android:paddingStart="6dp"
         android:paddingEnd="6dp"
-        android:hint="Password"
         android:textColor="@color/black"
-        android:textSize="18sp"
-        android:inputType="textPassword"/>
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/registerRepeatPasswordET"
@@ -52,26 +55,26 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
+        android:hint="Repeat password"
+        android:inputType="textPassword"
         android:paddingStart="6dp"
         android:paddingEnd="6dp"
-        android:hint="Repeat password"
         android:textColor="@color/black"
-        android:textSize="18sp"
-        android:inputType="textPassword"/>
+        android:textSize="18sp" />
 
     <CheckBox
         android:id="@+id/registerCheckBox"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="24dp"
         android:buttonTint="#616161"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         android:text="I agree to the Terms, Privacy Policy and Cookies Policy."
-        android:textColor="@color/black"/>
+        android:textColor="@color/black" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/registerSignupBTN"
@@ -81,16 +84,16 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/custom_rounded_button_drawable"
         android:text="Sign up"
-        android:textSize="20sp"
         android:textColor="@color/black"
-        android:textStyle="bold"/>
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/registerHaveAccountTV"
-        android:layout_marginTop="30dp"
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
         android:text="Already have an account? Sign in" />
 
 

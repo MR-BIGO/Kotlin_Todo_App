@@ -22,9 +22,14 @@ class TodoAddFragment : Fragment() {
     private lateinit var todoTitleET: EditText
     private lateinit var todoDescriptionET: EditText
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var timePicker: TimePicker
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+//        timePicker = view.findViewById(R.id.addFragmentTimePicker)
+//        timePicker.setIs24HourView(true)
+
 
         val addButton: Button = view.findViewById(R.id.addFragmentAddBTN)
         firebaseAuth = FirebaseAuth.getInstance()
@@ -38,6 +43,7 @@ class TodoAddFragment : Fragment() {
         addButton.setOnClickListener {
             insertTodo()
         }
+
     }
 
     override fun onCreateView(
@@ -57,11 +63,14 @@ class TodoAddFragment : Fragment() {
 
         val todoTitle: String = todoTitleET.text.toString()
         val todoDescription: String = todoDescriptionET.text.toString()
+//        val deadline = Time()
         if (todoTitle.isEmpty()) {
             todoTitleET.error = "Please, Enter The Title"
+            return
         }
         if (todoDescription.isEmpty()) {
             todoDescriptionET.error = "Please, Enter The Description"
+            return
         }
         val todoId = database.push().key!!
 
