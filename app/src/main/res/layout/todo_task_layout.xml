@@ -59,7 +59,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center_vertical"
             android:layout_weight="0"
-            android:background="@drawable/custom_check_button"
+            android:background="@drawable/custom_check_button_idle"
             android:contentDescription="todo state"
             android:src="@drawable/ic_baseline_check" />
     </LinearLayout>

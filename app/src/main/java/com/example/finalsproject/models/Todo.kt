@@ -7,5 +7,6 @@ data class Todo(
     var title: String? = null,
     var description: String? = null,
     var isDone: Boolean? = null,
+    var isFailed: Boolean? = null,
     //   var deadline: Time? = null
 )
