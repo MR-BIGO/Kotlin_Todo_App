@@ -4,17 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TimePicker
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import com.example.finalsproject.R
 import com.example.finalsproject.models.Todo
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import java.sql.Time
+import java.util.*
 
 class TodoAddFragment : Fragment() {
 
@@ -22,13 +19,15 @@ class TodoAddFragment : Fragment() {
     private lateinit var todoTitleET: EditText
     private lateinit var todoDescriptionET: EditText
     private lateinit var firebaseAuth: FirebaseAuth
-    private lateinit var timePicker: TimePicker
+    private lateinit var datePicker: DatePicker
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        timePicker = view.findViewById(R.id.addFragmentTimePicker)
-//        timePicker.setIs24HourView(true)
+
+        datePicker = view.findViewById(R.id.addFragmentDatePicker)
+
+        setDatePickerDate()
 
 
         val addButton: Button = view.findViewById(R.id.addFragmentAddBTN)
@@ -63,7 +62,8 @@ class TodoAddFragment : Fragment() {
 
         val todoTitle: String = todoTitleET.text.toString()
         val todoDescription: String = todoDescriptionET.text.toString()
-//        val deadline = Time()
+        val deadline: String = (datePicker.month + 1).toString() + ":" + datePicker.dayOfMonth + ":" + datePicker.year
+
         if (todoTitle.isEmpty()) {
             todoTitleET.error = "Please, Enter The Title"
             return
@@ -74,14 +74,21 @@ class TodoAddFragment : Fragment() {
         }
         val todoId = database.push().key!!
 
-        val todo = Todo(todoId, todoTitle, todoDescription, false, false)
+        val todo = Todo(todoId, todoTitle, todoDescription, false, false, deadline)
 
         database.child(todoId).setValue(todo).addOnSuccessListener {
-
             Toast.makeText(view?.context, "Task added successfully", Toast.LENGTH_SHORT).show()
             clear()
         }.addOnFailureListener {
             Toast.makeText(view?.context, it.message, Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun setDatePickerDate(){
+        val calendar = Calendar.getInstance()
+        val currentYear = calendar.get(Calendar.YEAR)
+        val currentMonth = calendar.get(Calendar.MONTH)
+        val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
+        datePicker.updateDate(currentYear, currentMonth, currentDay)
     }
 }

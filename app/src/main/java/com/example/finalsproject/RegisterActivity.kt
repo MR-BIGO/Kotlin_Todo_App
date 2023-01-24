@@ -3,7 +3,6 @@ package com.example.finalsproject
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.Toast
 import com.example.finalsproject.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -17,8 +16,6 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        //noAuthEnter()
 
         firebaseAuth = FirebaseAuth.getInstance()
 
@@ -78,14 +75,5 @@ class RegisterActivity : AppCompatActivity() {
         if (!password.contains("[0-9]".toRegex())) return false
 
         return true
-    }
-
-    private fun noAuthEnter() {
-
-        val signUpBtn: Button = findViewById(R.id.registerSignupBTN)
-        signUpBtn.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-        }
     }
 }

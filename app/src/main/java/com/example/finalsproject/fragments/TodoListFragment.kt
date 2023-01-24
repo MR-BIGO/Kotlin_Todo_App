@@ -16,6 +16,8 @@ import com.example.finalsproject.TodoAdapter
 import com.example.finalsproject.models.Todo
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class TodoListFragment : Fragment() {
 
@@ -62,6 +64,7 @@ class TodoListFragment : Fragment() {
                     for (todoSnap in snapshot.children) {
                         val todoData = todoSnap.getValue(Todo::class.java)
                         todoList.add(todoData!!)
+                        isFailedTodo(todoData)
                     }
                     val todoAdapter = TodoAdapter(todoList)
 
@@ -69,17 +72,16 @@ class TodoListFragment : Fragment() {
 
                     todoAdapter.setOnItemClickListener(object : TodoAdapter.OnItemClickListener {
                         override fun onItemClick(position: Int) {
-
                             openUpdateDialog(todoList[position])
                         }
 
                         override fun onButtonClick(position: Int) {
-                            if (todoList[position].isDone!!){
+                            if (todoList[position].isDone!!) {
                                 isDoneTodo(
                                     todoList[position].id!!,
                                     false
                                 )
-                            }else {
+                            } else {
                                 isDoneTodo(
                                     todoList[position].id!!,
                                     true
@@ -89,6 +91,7 @@ class TodoListFragment : Fragment() {
                     })
                 }
             }
+
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
@@ -123,7 +126,8 @@ class TodoListFragment : Fragment() {
                 updateTitleET.text.toString(),
                 updateDescriptionET.text.toString(),
                 todo.isDone!!,
-                todo.isFailed!!
+                todo.isFailed!!,
+                todo.deadline!!
             )
             alertDialog.dismiss()
         }
@@ -146,9 +150,10 @@ class TodoListFragment : Fragment() {
         title: String,
         description: String,
         isDone: Boolean,
-        isFailed: Boolean
+        isFailed: Boolean,
+        deadline: String,
     ) {
-        val updatedTodo = Todo(id, title, description, isDone, isFailed)
+        val updatedTodo = Todo(id, title, description, isDone, isFailed, deadline)
         database.child(id).setValue(updatedTodo)
     }
 
@@ -158,5 +163,31 @@ class TodoListFragment : Fragment() {
 
     private fun isDoneTodo(id: String, isDone: Boolean) {
         database.child(id).child("done").setValue(isDone)
+    }
+
+    private fun isFailedTodo(todo: Todo) {
+        var deadline = todo.deadline
+        val month: Int = deadline?.substringBefore(":")!!.toInt()
+        deadline = deadline.substringAfter(":")
+        val day: Int = deadline.substringBefore(":").toInt()
+        val year: Int = deadline.substringAfter(":").toInt()
+
+        val calendar = Calendar.getInstance()
+        val currentYear: Int = calendar.get(Calendar.YEAR)
+        val currentMonth: Int = calendar.get(Calendar.MONTH) + 6
+        val currentDay: Int = calendar.get(Calendar.DAY_OF_MONTH)
+
+        if (currentYear > year) {
+            database.child(todo.id!!).child("failed").setValue(true)
+            return
+        } else if (currentMonth > month) {
+            database.child(todo.id!!).child("failed").setValue(true)
+            return
+        } else if (currentDay > day) {
+            database.child(todo.id!!).child("failed").setValue(true)
+            return
+        } else {
+            return
+        }
     }
 }

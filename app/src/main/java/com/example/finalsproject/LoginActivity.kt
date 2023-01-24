@@ -3,7 +3,6 @@ package com.example.finalsproject
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.Toast
 import com.example.finalsproject.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -19,7 +18,6 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //simpleEntry()
 
         firebaseAuth = FirebaseAuth.getInstance()
 
@@ -47,20 +45,5 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
-    }
-
-    private fun simpleEntry() {
-        val logInBtn: Button = findViewById(R.id.loginSignInBTN)
-        logInBtn.setOnClickListener {
-            val intent = Intent(this, AppActivity::class.java)
-            startActivity(intent)
-        }
-
-        val registerBtn: Button = findViewById(R.id.loginRegisterBTN)
-        registerBtn.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
-        }
-
     }
 }

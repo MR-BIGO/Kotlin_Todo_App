@@ -44,14 +44,14 @@
 
         </LinearLayout>
 
-<!--                <TextView-->
-<!--                    android:id="@+id/taskDeadlineTV"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="30dp"-->
-<!--                    android:layout_gravity="center_vertical"-->
-<!--                    android:text="deadline"-->
-<!--                    android:textSize="18sp"-->
-<!--                    android:layout_marginEnd="10dp" />-->
+                <TextView
+                    android:id="@+id/taskDeadlineTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="deadline"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="10dp" />
 
         <ImageButton
             android:id="@+id/taskIsDoneBTN"

@@ -26,7 +26,7 @@ class TodoAdapter(private val todoList: ArrayList<Todo>) : RecyclerView.Adapter<
         var titleView: TextView = itemView.findViewById(R.id.taskTitleTV)
         var descriptionView: TextView = itemView.findViewById(R.id.taskDescriptionTV)
         var isDoneBtn: ImageButton = itemView.findViewById(R.id.taskIsDoneBTN)
-//        var deadlineView: TextView = itemView.findViewById(R.id.taskDeadlineTV)
+        var deadlineView: TextView = itemView.findViewById(R.id.taskDeadlineTV)
 
         init {
             itemView.setOnClickListener {
@@ -47,6 +47,7 @@ class TodoAdapter(private val todoList: ArrayList<Todo>) : RecyclerView.Adapter<
         val currentTodo = todoList[position]
         holder.titleView.text = currentTodo.title
         holder.descriptionView.text = currentTodo.description
+        holder.deadlineView.text = currentTodo.deadline
         if (currentTodo.isFailed == true){
             holder.isDoneBtn.setBackgroundResource(R.drawable.custom_check_button_failed)
         }else if (currentTodo.isDone == true){
@@ -54,8 +55,6 @@ class TodoAdapter(private val todoList: ArrayList<Todo>) : RecyclerView.Adapter<
         }else{
             holder.isDoneBtn.setBackgroundResource(R.drawable.custom_check_button_idle)
         }
-
-//        holder.deadlineView.text = currentTodo.deadline.toString()
     }
 
     override fun getItemCount(): Int {

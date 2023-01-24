@@ -69,13 +69,26 @@
             android:textColor="@color/black"
             android:textSize="16sp" />
 
-        <TimePicker
-            android:id="@+id/addFragmentTimePicker"
+<!--        <TimePicker-->
+<!--            android:id="@+id/addFragmentTimePicker"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:scaleX="0.8"-->
+<!--            android:scaleY="0.8"-->
+<!--            android:timePickerMode="spinner" />-->
+
+
+        <DatePicker
+            android:id="@+id/addFragmentDatePicker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:timePickerMode="spinner" />
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner"
+            android:startYear="2023" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/addFragmentAddBTN"
