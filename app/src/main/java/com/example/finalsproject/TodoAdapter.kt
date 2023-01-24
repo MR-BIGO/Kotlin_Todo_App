@@ -10,17 +10,37 @@ import com.example.finalsproject.models.Todo
 
 class TodoAdapter(private val todoList: ArrayList<Todo>) : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
 
-    class TodoViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
+    private lateinit var listener: OnItemClickListener
+
+    interface OnItemClickListener{
+        fun onItemClick(position: Int)
+        fun onButtonClick(position: Int)
+    }
+
+    fun setOnItemClickListener(clickListener: OnItemClickListener){
+        listener = clickListener
+    }
+
+    class TodoViewHolder(itemView: View, clickListener: OnItemClickListener) :RecyclerView.ViewHolder(itemView){
 
         var titleView: TextView = itemView.findViewById(R.id.taskTitleTV)
         var descriptionView: TextView = itemView.findViewById(R.id.taskDescriptionTV)
         var isDoneBtn: ImageButton = itemView.findViewById(R.id.taskIsDoneBTN)
 //        var deadlineView: TextView = itemView.findViewById(R.id.taskDeadlineTV)
+
+        init {
+            itemView.setOnClickListener {
+                clickListener.onItemClick(adapterPosition)
+            }
+            isDoneBtn.setOnClickListener {
+                clickListener.onButtonClick(adapterPosition)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.todo_task_layout, parent, false)
-        return TodoViewHolder(view)
+        return TodoViewHolder(view, listener)
     }
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
@@ -34,12 +54,7 @@ class TodoAdapter(private val todoList: ArrayList<Todo>) : RecyclerView.Adapter<
         }else{
             holder.isDoneBtn.setBackgroundResource(R.drawable.custom_check_button_idle)
         }
-        holder.itemView.setOnClickListener {
 
-        }
-//        holder.itemView.setOnLongClickListener {
-//
-//        }
 //        holder.deadlineView.text = currentTodo.deadline.toString()
     }
 

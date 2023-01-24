@@ -74,7 +74,7 @@ class TodoAddFragment : Fragment() {
         }
         val todoId = database.push().key!!
 
-        val todo = Todo(todoId, todoTitle, todoDescription, false, true)
+        val todo = Todo(todoId, todoTitle, todoDescription, false, false)
 
         database.child(todoId).setValue(todo).addOnSuccessListener {
 

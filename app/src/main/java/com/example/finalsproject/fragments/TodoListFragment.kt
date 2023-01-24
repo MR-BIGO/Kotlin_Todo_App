@@ -1,10 +1,12 @@
 package com.example.finalsproject.fragments
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -62,13 +64,99 @@ class TodoListFragment : Fragment() {
                         todoList.add(todoData!!)
                     }
                     val todoAdapter = TodoAdapter(todoList)
+
                     recyclerView.adapter = todoAdapter
+
+                    todoAdapter.setOnItemClickListener(object : TodoAdapter.OnItemClickListener {
+                        override fun onItemClick(position: Int) {
+
+                            openUpdateDialog(todoList[position])
+                        }
+
+                        override fun onButtonClick(position: Int) {
+                            if (todoList[position].isDone!!){
+                                isDoneTodo(
+                                    todoList[position].id!!,
+                                    false
+                                )
+                            }else {
+                                isDoneTodo(
+                                    todoList[position].id!!,
+                                    true
+                                )
+                            }
+                        }
+                    })
                 }
             }
-
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
         })
+    }
+
+    private fun openUpdateDialog(todo: Todo) {
+        val dialog = AlertDialog.Builder(view?.context)
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(R.layout.todo_update_dialog, null)
+
+        dialog.setView(dialogView)
+
+        val updateTitleET = dialogView.findViewById<EditText>(R.id.todoUpdateTitleET)
+        val updateDescriptionET = dialogView.findViewById<EditText>(R.id.todoUpdateDescriptionET)
+        val updateBTN = dialogView.findViewById<Button>(R.id.todoUpdateUpdateBTN)
+        val deleteBTN = dialogView.findViewById<Button>(R.id.todoUpdateDeleteBTN)
+
+        updateTitleET!!.setText(todo.title)
+        updateDescriptionET!!.setText(todo.description)
+
+        dialog.setTitle("Updating Task")
+
+        val alertDialog = dialog.create()
+
+        alertDialog.show()
+
+        updateBTN?.setOnClickListener {
+
+            updateTodo(
+                todo.id!!,
+                updateTitleET.text.toString(),
+                updateDescriptionET.text.toString(),
+                todo.isDone!!,
+                todo.isFailed!!
+            )
+            alertDialog.dismiss()
+        }
+        deleteBTN?.setOnClickListener {
+            val builder = AlertDialog.Builder(view?.context)
+            builder.setTitle("Are You Sure You Want To Delete This Task?")
+            builder.setPositiveButton("Yes") { dialog, which ->
+                deleteTodo(todo.id!!)
+            }
+            builder.setNegativeButton("No") { dialog, which ->
+                alertDialog.dismiss()
+            }
+            builder.show()
+            alertDialog.dismiss()
+        }
+    }
+
+    private fun updateTodo(
+        id: String,
+        title: String,
+        description: String,
+        isDone: Boolean,
+        isFailed: Boolean
+    ) {
+        val updatedTodo = Todo(id, title, description, isDone, isFailed)
+        database.child(id).setValue(updatedTodo)
+    }
+
+    private fun deleteTodo(id: String) {
+        database.child(id).removeValue()
+    }
+
+    private fun isDoneTodo(id: String, isDone: Boolean) {
+        database.child(id).child("done").setValue(isDone)
     }
 }
