@@ -8,6 +8,7 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import com.example.finalsproject.R
 import com.example.finalsproject.models.Todo
+import com.example.finalsproject.notification.MyNotificationService
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -23,8 +24,6 @@ class TodoAddFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
         datePicker = view.findViewById(R.id.addFragmentDatePicker)
 
         setDatePickerDate()

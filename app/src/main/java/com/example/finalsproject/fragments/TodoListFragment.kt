@@ -8,12 +8,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalsproject.R
 import com.example.finalsproject.TodoAdapter
 import com.example.finalsproject.models.Todo
+import com.example.finalsproject.notification.MyNotificationService
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.util.*
@@ -26,9 +28,12 @@ class TodoListFragment : Fragment() {
     private lateinit var database: DatabaseReference
     private lateinit var refreshBtn: ImageButton
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var service: MyNotificationService
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        service = MyNotificationService(view.context)
 
         firebaseAuth = FirebaseAuth.getInstance()
         val uid = firebaseAuth.currentUser?.uid
@@ -86,6 +91,7 @@ class TodoListFragment : Fragment() {
                                     todoList[position].id!!,
                                     true
                                 )
+                                service.showNotification()
                             }
                         }
                     })
@@ -155,6 +161,7 @@ class TodoListFragment : Fragment() {
     ) {
         val updatedTodo = Todo(id, title, description, isDone, isFailed, deadline)
         database.child(id).setValue(updatedTodo)
+        Toast.makeText(view?.context, "Task Updated Successfully", Toast.LENGTH_SHORT).show()
     }
 
     private fun deleteTodo(id: String) {
@@ -174,7 +181,7 @@ class TodoListFragment : Fragment() {
 
         val calendar = Calendar.getInstance()
         val currentYear: Int = calendar.get(Calendar.YEAR)
-        val currentMonth: Int = calendar.get(Calendar.MONTH) + 6
+        val currentMonth: Int = calendar.get(Calendar.MONTH) + 1
         val currentDay: Int = calendar.get(Calendar.DAY_OF_MONTH)
 
         if (currentYear > year) {
