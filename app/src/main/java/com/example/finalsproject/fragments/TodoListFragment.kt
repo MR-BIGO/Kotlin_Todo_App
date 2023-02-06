@@ -81,17 +81,19 @@ class TodoListFragment : Fragment() {
                         }
 
                         override fun onButtonClick(position: Int) {
-                            if (todoList[position].isDone!!) {
-                                isDoneTodo(
-                                    todoList[position].id!!,
-                                    false
-                                )
-                            } else {
-                                isDoneTodo(
-                                    todoList[position].id!!,
-                                    true
-                                )
-                                service.showNotification()
+                            if (!todoList[position].isFailed!!) {
+                                if (todoList[position].isDone!!) {
+                                    isDoneTodo(
+                                        todoList[position].id!!,
+                                        false
+                                    )
+                                } else {
+                                    isDoneTodo(
+                                        todoList[position].id!!,
+                                        true
+                                    )
+                                    service.showNotification()
+                                }
                             }
                         }
                     })
@@ -99,7 +101,6 @@ class TodoListFragment : Fragment() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
             }
         })
     }
@@ -174,7 +175,7 @@ class TodoListFragment : Fragment() {
 
     private fun isFailedTodo(todo: Todo) {
         var deadline = todo.deadline
-        val month: Int = deadline?.substringBefore(":")!!.toInt()
+        val month: Int = deadline!!.substringBefore(":").toInt()
         deadline = deadline.substringAfter(":")
         val day: Int = deadline.substringBefore(":").toInt()
         val year: Int = deadline.substringAfter(":").toInt()
@@ -186,15 +187,11 @@ class TodoListFragment : Fragment() {
 
         if (currentYear > year) {
             database.child(todo.id!!).child("failed").setValue(true)
-            return
-        } else if (currentMonth > month) {
+        } else if (currentYear == year && currentMonth > month) {
             database.child(todo.id!!).child("failed").setValue(true)
-            return
-        } else if (currentDay > day) {
+        } else if (currentYear == year && currentMonth == month && currentDay > day) {
             database.child(todo.id!!).child("failed").setValue(true)
-            return
-        } else {
-            return
         }
+
     }
 }
