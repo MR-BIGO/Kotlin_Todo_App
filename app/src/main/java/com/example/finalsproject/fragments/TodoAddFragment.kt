@@ -61,7 +61,8 @@ class TodoAddFragment : Fragment() {
 
         val todoTitle: String = todoTitleET.text.toString()
         val todoDescription: String = todoDescriptionET.text.toString()
-        val deadline: String = (datePicker.month + 1).toString() + ":" + datePicker.dayOfMonth + ":" + datePicker.year
+        val deadline: String =
+            (datePicker.month + 1).toString() + ":" + datePicker.dayOfMonth + ":" + datePicker.year
 
         if (todoTitle.isEmpty()) {
             todoTitleET.error = "Please, Enter The Title"
@@ -83,7 +84,7 @@ class TodoAddFragment : Fragment() {
         }
     }
 
-    private fun setDatePickerDate(){
+    private fun setDatePickerDate() {
         val calendar = Calendar.getInstance()
         val currentYear = calendar.get(Calendar.YEAR)
         val currentMonth = calendar.get(Calendar.MONTH)

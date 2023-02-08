@@ -16,10 +16,8 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
+        style="@style/TAB"
         android:layout_width="match_parent"
-        app:tabSelectedTextColor="#80CBC4"
-        android:background="#E0F2F1"
-        app:tabIconTint="#009688"
         android:layout_height="100dp"
         android:layout_weight="1" />
 

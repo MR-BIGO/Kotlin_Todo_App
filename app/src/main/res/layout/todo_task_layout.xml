@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/TodoCard"
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:layout_marginStart="10dp"
     android:layout_marginTop="20dp"
     android:layout_marginEnd="10dp"
     android:layout_marginBottom="10dp"
-    app:cardBackgroundColor="#E0F2F1"
     app:cardCornerRadius="20dp"
     app:cardElevation="4dp">
 
@@ -27,15 +27,16 @@
 
             <TextView
                 android:id="@+id/taskTitleTV"
+                style="@style/MainText"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginTop="4dp"
                 android:text="title"
-                android:textColor="@color/black"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/taskDescriptionTV"
+                style="@style/MainText"
                 android:layout_width="wrap_content"
                 android:layout_height="26dp"
                 android:layout_marginTop="8dp"
@@ -50,6 +51,7 @@
             android:orientation="vertical">
 
             <TextView
+                style="@style/MainText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -57,6 +59,7 @@
 
             <TextView
                 android:id="@+id/taskDeadlineTV"
+                style="@style/MainText"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginTop="8dp"

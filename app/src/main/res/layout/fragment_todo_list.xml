@@ -19,31 +19,30 @@
             android:orientation="horizontal">
 
             <TextView
+                style="@style/MainText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:text="TASKS"
-                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <ImageButton
-                android:id="@+id/listFragmentReloadBTN"
+                android:id="@+id/listFragmentDayModeBTN"
+                style="@style/RefreshBTN"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_weight="0"
-                android:background="@drawable/custom_refresh_button"
-                android:src="@drawable/ic_baseline_refresh" />
+                android:layout_weight="0" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listFragmentRV"
+            style="@style/RvBackground"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="30dp"
-            android:background="@drawable/custom_recycler_view"
             tools:listitem="@layout/todo_task_layout" />
     </LinearLayout>
 

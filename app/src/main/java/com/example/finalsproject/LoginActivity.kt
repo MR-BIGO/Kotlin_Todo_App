@@ -1,9 +1,12 @@
 package com.example.finalsproject
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.finalsproject.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -12,6 +15,7 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +24,11 @@ class LoginActivity : AppCompatActivity() {
 
 
         firebaseAuth = FirebaseAuth.getInstance()
+        sharedPreferences = getSharedPreferences("MODE", Context.MODE_PRIVATE)
+        val nightMode: Boolean = sharedPreferences.getBoolean("night", false)
+        if (nightMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }
 
         binding.loginSignInBTN.setOnClickListener {
 

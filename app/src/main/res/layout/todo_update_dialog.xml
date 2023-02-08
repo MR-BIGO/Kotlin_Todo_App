@@ -8,6 +8,7 @@
 
     <EditText
         android:id="@+id/todoUpdateTitleET"
+        style="@style/MainText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
@@ -17,11 +18,11 @@
         android:inputType="text"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
-        android:textColor="@color/black"
         android:textSize="20sp" />
 
     <EditText
         android:id="@+id/todoUpdateDescriptionET"
+        style="@style/MainText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
@@ -31,7 +32,6 @@
         android:inputType="text"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
-        android:textColor="@color/black"
         android:textSize="20sp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,24 +44,24 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/todoUpdateDeleteBTN"
+            style="@style/DeleteButton"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:layout_gravity="start"
-            android:background="@color/white"
             android:elevation="0dp"
             android:text="DELETE"
-            android:textColor="@color/red_failed"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/todoUpdateUpdateBTN"
+            style="@style/MainText"
             android:layout_width="140dp"
             android:layout_height="50dp"
             android:layout_gravity="end"
             android:background="@drawable/custom_rounded_button_drawable"
             android:text="Update"
-            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"

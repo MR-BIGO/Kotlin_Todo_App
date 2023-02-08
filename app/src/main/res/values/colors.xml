@@ -10,4 +10,6 @@
     <color name="red_failed">#FFFF5252</color>
     <color name="green_finished">#FF1DE9B6</color>
     <color name="grey_idle">#FFE0E0E0</color>
+    <color name="tab_dark">#FF4A148C</color>
+    <color name="tab_light">#FFE0F2F1</color>
 </resources>

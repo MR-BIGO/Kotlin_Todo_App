@@ -13,4 +13,33 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    
+    <style name="SCREEN">
+        <item name="android:background">#FFF</item>
+    </style>
+
+    <style name="MainText">
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="RvBackground">
+        <item name="android:background">@drawable/custom_recycler_view</item>
+    </style>
+    <style name="RefreshBTN">
+        <item name="android:background">@drawable/custom_refresh_button</item>
+        <item name="android:src">@drawable/refresh_button</item>
+        <item name="tint">#000</item>
+    </style>
+    <style name="TodoCard">
+        <item name="cardBackgroundColor">#E0F2F1</item>
+    </style>
+    <style name="TAB">
+        <item name="tabSelectedTextColor">#80CBC4</item>
+        <item name="tabBackground">@drawable/tab_background</item>
+        <item name="tabIconTint">#009688</item>
+    </style>
+    <style name="DeleteButton">
+        <item name="background">@drawable/details_delete_button</item>
+        <item name="android:textColor">@color/red_failed</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

@@ -1,6 +1,10 @@
 package com.example.finalsproject.fragments
 
 import android.app.AlertDialog
+import android.content.Context
+import android.content.SharedPreferences
+import android.content.res.Configuration
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +13,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,9 +31,12 @@ class TodoListFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var todoList: ArrayList<Todo>
     private lateinit var database: DatabaseReference
-    private lateinit var refreshBtn: ImageButton
+    private lateinit var dayModeBtn: ImageButton
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var service: MyNotificationService
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,9 +54,23 @@ class TodoListFragment : Fragment() {
         todoList = arrayListOf()
         getTodos()
 
-        refreshBtn = view.findViewById(R.id.listFragmentReloadBTN)
-        refreshBtn.setOnClickListener {
-            getTodos()
+        dayModeBtn = view.findViewById(R.id.listFragmentDayModeBTN)
+
+        sharedPreferences = view.context.getSharedPreferences("MODE", Context.MODE_PRIVATE)
+        val nightMode: Boolean = sharedPreferences.getBoolean("night", false)
+
+        dayModeBtn.setOnClickListener {
+
+            if (nightMode) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                editor = sharedPreferences.edit()
+                editor.putBoolean("night", false)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                editor = sharedPreferences.edit()
+                editor.putBoolean("night", true)
+            }
+            editor.apply()
         }
     }
 
