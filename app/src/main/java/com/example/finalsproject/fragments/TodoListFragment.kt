@@ -2,6 +2,7 @@ package com.example.finalsproject.fragments
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.graphics.Color
@@ -17,6 +18,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.finalsproject.LoginActivity
 import com.example.finalsproject.R
 import com.example.finalsproject.TodoAdapter
 import com.example.finalsproject.models.Todo
@@ -32,6 +34,7 @@ class TodoListFragment : Fragment() {
     private lateinit var todoList: ArrayList<Todo>
     private lateinit var database: DatabaseReference
     private lateinit var dayModeBtn: ImageButton
+    private lateinit var logOutBtn: ImageButton
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var service: MyNotificationService
     private lateinit var sharedPreferences: SharedPreferences
@@ -58,6 +61,21 @@ class TodoListFragment : Fragment() {
 
         sharedPreferences = view.context.getSharedPreferences("MODE", Context.MODE_PRIVATE)
         val nightMode: Boolean = sharedPreferences.getBoolean("night", false)
+
+        logOutBtn = view.findViewById(R.id.listFragmentLogOutBTN)
+
+        logOutBtn.setOnClickListener {
+            val builder = AlertDialog.Builder(view.context)
+            builder.setTitle("Are You Sure You Want To Log Out From Your Account?")
+            builder.setPositiveButton("Yes") { dialog, which ->
+                logOut()
+            }
+            builder.setNegativeButton("No") { dialog, which ->
+                dialog.dismiss()
+            }
+            builder.show()
+
+        }
 
         dayModeBtn.setOnClickListener {
 
@@ -215,5 +233,11 @@ class TodoListFragment : Fragment() {
             database.child(todo.id!!).child("failed").setValue(true)
         }
 
+    }
+
+    private fun logOut(){
+        firebaseAuth.signOut()
+        val intent = Intent(view?.context, LoginActivity::class.java)
+        startActivity(intent)
     }
 }

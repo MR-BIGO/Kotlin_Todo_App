@@ -29,6 +29,11 @@
         <item name="android:src">@drawable/refresh_button</item>
         <item name="tint">#000</item>
     </style>
+    <style name="LogOutBTN">
+        <item name="android:background">@drawable/custom_refresh_button</item>
+        <item name="android:src">@drawable/ic_baseline_logout_icon</item>
+        <item name="tint">#000</item>
+    </style>
     <style name="TodoCard">
         <item name="cardBackgroundColor">#E0F2F1</item>
     </style>

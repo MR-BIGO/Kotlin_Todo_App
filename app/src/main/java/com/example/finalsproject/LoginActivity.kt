@@ -22,8 +22,8 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         firebaseAuth = FirebaseAuth.getInstance()
+        checkUser()
         sharedPreferences = getSharedPreferences("MODE", Context.MODE_PRIVATE)
         val nightMode: Boolean = sharedPreferences.getBoolean("night", false)
         if (nightMode) {
@@ -52,6 +52,12 @@ class LoginActivity : AppCompatActivity() {
 
         binding.loginRegisterBTN.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
+    }
+    private fun checkUser(){
+        if (firebaseAuth.currentUser != null){
+            val intent = Intent(this, AppActivity::class.java)
             startActivity(intent)
         }
     }

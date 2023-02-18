@@ -34,6 +34,14 @@
                 style="@style/RefreshBTN"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="0" />
+
+            <ImageButton
+                android:id="@+id/listFragmentLogOutBTN"
+                style="@style/LogOutBTN"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_weight="0" />
         </LinearLayout>
 
